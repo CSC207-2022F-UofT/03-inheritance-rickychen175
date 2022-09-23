@@ -14,7 +14,10 @@ public abstract class Bag {
      *       - an array of Strings named contents
      */
 
-
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents;
 
 
     /*
@@ -27,7 +30,12 @@ public abstract class Bag {
      * its contents.)
      */
 
-
+    public Bag(String color, int capacity) {
+        this.color = color;
+        this.capacity = capacity;
+        this.numberOfContents = 0;
+        this.contents = new String[capacity];
+    }
 
 
     /*
@@ -38,7 +46,17 @@ public abstract class Bag {
      *           - getCapacity
      */
 
+    public String getColor() {
+        return this.color;
+    }
 
+    public int getNumberOfContents() {
+        return this.numberOfContents;
+    }
+
+    public int getCapacity() {
+        return this.capacity;
+    }
 
 
     /*
@@ -46,7 +64,9 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
+    public void setColor(String color) {
+        this.color = color;
+    }
 
 
 
@@ -61,7 +81,14 @@ public abstract class Bag {
      *       and false otherwise.
      */
 
-
+    public boolean addItem(String item) {
+        if (this.numberOfContents < capacity) {
+            this.contents[this.numberOfContents] = item;
+            this.numberOfContents++;
+            return true;
+        }
+        return false;
+    }
 
 
 
@@ -76,7 +103,12 @@ public abstract class Bag {
      * @return
      */
 
-
+    public String popItem() {
+        String lastItem = this.contents[this.numberOfContents - 1];
+        this.contents[this.numberOfContents - 1] = null;
+        this.numberOfContents--;
+        return lastItem;
+    }
 
 
 
@@ -87,7 +119,10 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
-
+        String[] newArray = new String[this.capacity + n];
+        System.arraycopy(this.contents, 0, newArray, 0, this.capacity);
+        this.capacity += n;
+        this.contents = newArray;
     }
 
     /**
