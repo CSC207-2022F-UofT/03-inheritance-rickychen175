@@ -69,7 +69,6 @@ public abstract class Bag {
     }
 
 
-
     /*
      * TODO: Create a method called addItem that takes in a String
      *       representing an item in the Bag.
